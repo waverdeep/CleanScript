@@ -17,7 +17,11 @@ for i in range(20, 40):
 
 # 스크립트에 포함된 잡음 아이디 코드 제거
 reformat_script_lines = script_manipulate.remove_noise_id_in_list(reformat_script_lines, 'b/', 'i/', 'o/', 'n/')
-for i in range(20, 40):
+for i in range(20, 90):
     print('{} :: {}'.format(i, reformat_script_lines[i]))
 
-print("output : {}".format(script_manipulate.numeric_to_pron(reformat_script_lines[31])))
+
+# remove numeric type
+reformat_script_lines = script_manipulate.change_number_to_pron_in_list(reformat_script_lines)
+for i in range(20, 90):
+    print('{} :: {}'.format(i, reformat_script_lines[i]))
