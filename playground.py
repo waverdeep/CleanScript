@@ -20,4 +20,4 @@ reformat_script_lines = script_manipulate.remove_noise_id_in_list(reformat_scrip
 for i in range(20, 40):
     print('{} :: {}'.format(i, reformat_script_lines[i]))
 
-print(script_manipulate.detect_numeric(reformat_script_lines[31]))
+print("output : {}".format(script_manipulate.numeric_to_pron(reformat_script_lines[31])))

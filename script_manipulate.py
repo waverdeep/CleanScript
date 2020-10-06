@@ -1,6 +1,12 @@
 import re
 
 
+# 이중으로 들어간 공백을 수정해주는 함수
+def remove_double_blank(line):
+    temp = ' '.join(line.split())
+    return temp
+
+
 def get_only_script(lines, split_keyword='::'):
     path_lines = []
     script_lines = []
@@ -15,7 +21,7 @@ def get_only_script(lines, split_keyword='::'):
 # 특정 감탄사만 제거하는 함수
 def remove_interjection(line, keyword='아/ '):
     temp = line.replace(keyword, '')
-    temp = ' '.join(temp.split())
+    temp = remove_double_blank(temp)
     return temp
 
 
@@ -26,7 +32,7 @@ def remove_interjections_in_list(lines, *args):
         temp = line
         for arg in args:
             temp = temp.replace(arg, '')
-        temp = ' '.join(temp.split())
+        temp = remove_double_blank(temp)
         dataset.append(temp)
     return dataset
 
@@ -38,7 +44,7 @@ def remove_noise_id_in_list(lines, *args):
         temp = line
         for arg in args:
             temp = temp.replace(arg, '')
-        temp = ' '.join(temp.split())
+        temp = remove_double_blank(temp)
         dataset.append(temp)
     return dataset
 
@@ -47,7 +53,37 @@ def remove_noise_id_in_list(lines, *args):
 # 정규식으로 처리하는 것이 좋을지에 대한 부분은 생각을 해보아야 할 듯 함
 def change_number_pron_in_list(lines):
     for line in lines:
-        detect_numeric(line)
+        if detect_numeric(line):
+            pass
+
+
+# 숫자일 경우 발음전사를 선택하는 부분
+def numeric_to_pron(line):
+    temp = line
+    pattern = re.compile(r"\((.*?)\)")
+    find = re.findall(pattern, line)
+    temp = temp.replace(find[0], '')
+    temp = remove_bracket_pair(temp)
+    temp = remove_slash(temp)
+    temp = remove_double_blank(temp)
+    return temp
+
+
+def remove_slash(line):
+    temp = line.replace('/', '')
+    return temp
+
+
+# 소괄호를 제거하는 함수
+# 괄호 형태를 조절할 수 있음
+def remove_bracket_pair(line, type_size='small'):
+    if type_size == 'small':
+        temp = re.sub('[()]', '', line)
+    elif type_size == 'middle':
+        temp = re.sub('[{}]', '', line)
+    elif type_size == 'large':
+        temp = re.sub('[[]]', '', line)
+    return temp
 
 
 # 문장 내에서 숫자를 검출하는 함수
