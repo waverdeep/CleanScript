@@ -62,6 +62,14 @@ def change_number_to_pron_in_list(lines):
     return dataset
 
 
+def change_number_to_pron(line):
+    if detect_numeric(line):
+        modified_temp = numeric_to_pron(line)
+        return modified_temp
+    else:
+        return line
+
+
 # 숫자일 경우 발음전사를 선택하는 부분
 def numeric_to_pron(line):
     temp = line
@@ -104,6 +112,26 @@ def detect_numeric(line):
 
 
 # 문장 내에서 이중전사로 처리된 부분을 철자전사로 변경하는 함
-def change_pron_to_dic_in_list():
-    pass
+def change_pron_to_dic_in_list(lines):
+    dataset = []
+    for line in lines:
+        if detect_numeric(line): # numeric이 존재할 경
+            dataset.append(line)
+        else:
+            modified_temp = select_pron_script(line)
+            dataset.append(modified_temp)
+    return dataset
+
+
+def select_pron_script(line):
+    temp = line
+    pattern = re.compile(r"\((.*?)\)")
+    find = re.findall(pattern, line)
+    for s in range(0, len(find), 2):
+        temp = temp.replace(find[s], '')
+    temp = remove_bracket_pair(temp)
+    temp = remove_slash(temp)
+    temp = remove_double_blank(temp)
+    return temp
+
 
