@@ -144,3 +144,8 @@ def select_pron_script(line):
     return temp
 
 
+def remove_punctuation_rules(line, *args):
+    temp = remove_noise_id(line, *args)
+    return temp
+
+
