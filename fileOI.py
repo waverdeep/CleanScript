@@ -1,5 +1,6 @@
 import os
 import glob
+import natsort
 
 
 # find all dataset filepath
@@ -23,3 +24,10 @@ def read_txt_file(file_path, encoding='utf8'):
         lines.append(line)
     f.close()
     return lines
+
+
+# by kspon
+def get_divided_script(input_dir, file_extension='txt'):
+    temp = get_all_file_path(input_dir, file_extension)
+    temp = natsort.natsorted(temp)
+    return temp
