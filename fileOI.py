@@ -13,6 +13,7 @@ def open_file(file_path):
     f = open(file_path)
     return f
 
+
 def get_pure_filepath(filename):
     temp = filename.split('/')
     del temp[-1]
@@ -45,6 +46,7 @@ def read_text_file_one_line(file_path, encoding='utf8'):
     f = open(file_path, 'r', encoding=encoding)
     line = f.readline()
     f.close()
+    line = line.replace('\n', '')
     return line
 
 
@@ -61,9 +63,3 @@ def filename_script_pair_tolist(filename, encoding):
     temp = [pure_filename, line]
     return temp
 
-
-def merge_script_like_libris(file_list, divider=' ', encoding='euc-kr'):
-    # step 01 : 파일리스트를 통해서 스크립트 읽기
-    for file in file_list:
-        temp = filename_script_pair_tolist(file, encoding)
-        print(temp)

@@ -37,6 +37,15 @@ def remove_interjections_in_list(lines, *args):
     return dataset
 
 
+# 여러 형태의 잡음에 대한 스크립트 아이디를 제거하는 함수 ( 한줄짜리)
+def remove_noise_id(line, *args):
+    temp = line
+    for arg in args:
+        temp = temp.replace(arg, '')
+    temp = remove_double_blank(temp)
+    return temp
+
+
 # 여러 형태의 잡음에 대한 스크립트 아이디를 제거하는 함수
 def remove_noise_id_in_list(lines, *args):
     dataset = []

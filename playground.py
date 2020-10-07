@@ -1,5 +1,5 @@
 import fileOI
-import script_manipulate
+import script_preprocess
 
 # dev_dataset = './dataset/dev.trn'
 # data_list = fileOI.read_txt_file(dev_dataset)
@@ -23,4 +23,4 @@ import script_manipulate
 
 input_dir = './dataset/Kspon_dataset/KsponSpeech_01'
 dataset = fileOI.get_divided_script(input_dir=input_dir)
-fileOI.merge_script_like_libris(dataset)
+script_preprocess.merge_script_like_libris(dataset)
