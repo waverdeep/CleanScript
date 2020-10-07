@@ -23,4 +23,4 @@ import script_manipulate
 
 input_dir = './dataset/Kspon_dataset/KsponSpeech_01'
 dataset = fileOI.get_divided_script(input_dir=input_dir)
-print(dataset)
+fileOI.merge_script_like_libris(dataset)
