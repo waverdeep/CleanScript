@@ -13,7 +13,7 @@ def get_only_script(lines, split_keyword='::'):
     for line in lines:
         temp = line.split(split_keyword)
         path_lines.append(temp[0])
-        script_lines.append(temp[1].strip()) # 앞뒤 공백 제거
+        script_lines.append(temp[1].strip())  # 앞뒤 공백 제거
 
     return path_lines, script_lines
 
@@ -124,7 +124,7 @@ def detect_numeric(line):
 def change_pron_to_dic_in_list(lines):
     dataset = []
     for line in lines:
-        if detect_numeric(line): # numeric이 존재할 경
+        if detect_numeric(line):  # numeric이 존재할 경
             dataset.append(line)
         else:
             modified_temp = select_pron_script(line)
@@ -134,7 +134,7 @@ def change_pron_to_dic_in_list(lines):
 
 # 문장 내에서 이중전사로 처리된 부분을 철자전사로 변경하는 함
 def change_pron_to_dic(line):
-    if detect_numeric(line): # numeric이 존재할 경
+    if detect_numeric(line):  # numeric이 존재할 경
         return line
     else:
         modified_temp = select_pron_script(line)
@@ -158,3 +158,8 @@ def remove_punctuation_rules(line, *args):
     return temp
 
 
+def is_remove_line(line):
+    if 'u/' in line:
+        return True
+    else:
+        return False
