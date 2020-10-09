@@ -11,7 +11,7 @@ def merge_script_like_libris(file_list, divider=' ', encoding='euc-kr'):
         if script_manipulate.is_remove_line(temp[1]):
             break
         # step 02 : 잡음 제거하기
-        temp[1] = script_manipulate.remove_noise_id(temp[1], 'b/', 'i/', 'o/', 'n/')
+        temp[1] = script_manipulate.remove_noise_id(temp[1], 'b/', 'i/', 'o/', 'n/', 'l/')
         # step 03 : 구두점 제거하기
         temp[1] = script_manipulate.remove_punctuation_rules(temp[1], '.', ',', '?', '!', '+', '*')
         # step 04 : 이중전사 처리하기
@@ -20,3 +20,4 @@ def merge_script_like_libris(file_list, divider=' ', encoding='euc-kr'):
         temp[1] = script_manipulate.change_pron_to_dic(temp[1])
         dataset.append(temp)
         print(temp)
+    return dataset
