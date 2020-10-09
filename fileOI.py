@@ -1,6 +1,7 @@
 import os
 import glob
 import natsort
+import csv
 
 
 # find all dataset filepath
@@ -63,3 +64,18 @@ def filename_script_pair_tolist(filename, encoding):
     temp = [pure_filename, line]
     return temp
 
+
+def write_csv_file(dataset, filepath, filename, divider=' ', encoding='utf-8'):
+    file = open('{}/{}'.format(filepath, filename), 'w', encoding=encoding)
+    wr = csv.writer(file, delimiter=divider)
+    for data in dataset:
+        wr.writerow(data)
+    file.close()
+
+
+def read_csv_file(filepath, filename, encoding='utf-8', divider=' '):
+    file = open('{}/{}'.format(filepath, filename), 'r', encoding=encoding)
+    rdr = csv.reader(file, delimiter=divider)
+    for line in rdr:
+        print(line)
+    file.close()

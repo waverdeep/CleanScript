@@ -23,4 +23,6 @@ import script_preprocess
 
 input_dir = './dataset/Kspon_dataset/KsponSpeech_01'
 dataset = fileOI.get_divided_script(input_dir=input_dir)
-script_preprocess.merge_script_like_libris(dataset)
+dataset = script_preprocess.merge_script_like_libris(dataset)
+fileOI.write_csv_file(dataset, './dataset', 'filelist.csv')
+fileOI.read_csv_file('./dataset', 'filelist.csv')
