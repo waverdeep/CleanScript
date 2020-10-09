@@ -132,6 +132,15 @@ def change_pron_to_dic_in_list(lines):
     return dataset
 
 
+# 문장 내에서 이중전사로 처리된 부분을 철자전사로 변경하는 함
+def change_pron_to_dic(line):
+    if detect_numeric(line): # numeric이 존재할 경
+        return line
+    else:
+        modified_temp = select_pron_script(line)
+        return modified_temp
+
+
 def select_pron_script(line):
     temp = line
     pattern = re.compile(r"\((.*?)\)")

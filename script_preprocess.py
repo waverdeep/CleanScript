@@ -12,4 +12,6 @@ def merge_script_like_libris(file_list, divider=' ', encoding='euc-kr'):
         temp[1] = script_manipulate.remove_punctuation_rules(temp[1], '.', ',', '?', '!', '+', '*')
         # step 04 : 이중전사 처리하기
         temp[1] = script_manipulate.change_number_to_pron(temp[1])
+        # step 05 : 이중전사 처리하기 (철자전사, 발음전사)
+        temp[1] = script_manipulate.change_pron_to_dic(temp[1])
         print(temp)
