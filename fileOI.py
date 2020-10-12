@@ -79,3 +79,10 @@ def read_csv_file(filepath, filename, encoding='utf-8', divider=' '):
     for line in rdr:
         print(line)
     file.close()
+
+
+def write_label(filepath, filename, label_list):
+    f = open("{}/{}".format(filepath, filename), 'w')
+    for label in label_list:
+        f.write(label)
+    f.close()
