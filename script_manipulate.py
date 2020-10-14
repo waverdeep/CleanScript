@@ -163,3 +163,16 @@ def is_remove_line(line):
         return True
     else:
         return False
+
+
+def replace_alphabet(line):
+    line = line.replace('B', '비')
+    line = line.replace('S', '에스')
+    line = line.replace('D', '디')
+    line = line.replace('V', '비')
+    line = line.replace('O', '오')
+    line = line.replace('T', '티')
+    line = line.replace('C', '씨')
+    return line
+
+
