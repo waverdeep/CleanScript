@@ -23,8 +23,12 @@ import create_label
 # reformat_script_lines = script_manipulate.change_number_to_pron_in_list(reformat_script_lines)
 
 input_dir = './dataset/Kspon_dataset/KsponSpeech_01'
+input_dir = '/data/Kspon_dataset/original'
 dataset = fileOI.get_divided_script(input_dir=input_dir)
-dataset_merge = script_preprocess.merge_script_like_libris(dataset)
-fileOI.write_csv_file(dataset_merge, './dataset', 'filelist.csv')
-fileOI.read_csv_file('./dataset', 'filelist.csv')
-print(create_label.extract_singular_labels(dataset))
+print(len(dataset))
+# dataset_merge = script_preprocess.merge_script_like_libris(dataset)
+# fileOI.write_csv_file(dataset_merge, './dataset', 'filelist.csv')
+# fileOI.read_csv_file('./dataset', 'filelist.csv')
+label_list = create_label.extract_singular_labels(dataset)
+fileOI.write_label('.', 'labels.txt', label_list)
+print(label_list)

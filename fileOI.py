@@ -2,6 +2,7 @@ import os
 import glob
 import natsort
 import csv
+import json
 
 
 # find all dataset filepath
@@ -82,7 +83,12 @@ def read_csv_file(filepath, filename, encoding='utf-8', divider=' '):
 
 
 def write_label(filepath, filename, label_list):
-    f = open("{}/{}".format(filepath, filename), 'w')
+    f = open("{}/{}".format(filepath, filename), 'w', encoding='utf-8')
     for label in label_list:
-        f.write(label)
+        f.write('{}\n'.format(label))
     f.close()
+
+
+def write_json_file(dataset, filepath, encoding='utf-8'):
+    with open(filepath, 'w', encoding=encoding) as outfile:
+        json.dump(dataset, outfile)
