@@ -34,7 +34,7 @@ def get_pure_filename(filename):
 
 def read_txt_file(file_path, encoding='utf8'):
     lines = []
-    f = open(file_path, 'r', encoding=encoding)
+    f = open(file_path, 'r', encoding=encoding, errors='ignore')
     while True:
         line = f.readline()
         if not line:
@@ -92,3 +92,9 @@ def write_label(filepath, filename, label_list):
 def write_json_file(dataset, filepath, encoding='utf-8'):
     with open(filepath, 'w', encoding=encoding) as outfile:
         json.dump(dataset, outfile)
+
+
+def read_json_file(filepath, encoding='utf-8'):
+    with open(filepath) as json_file:
+        json_data = json.load(json_file)
+    return json_data
