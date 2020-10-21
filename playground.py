@@ -1,5 +1,6 @@
 import fileOI
 import script_preprocess
+import sys
 import create_label
 
 # dev_dataset = './dataset/dev.trn'
@@ -23,12 +24,18 @@ import create_label
 # reformat_script_lines = script_manipulate.change_number_to_pron_in_list(reformat_script_lines)
 
 input_dir = './dataset/Kspon_dataset/KsponSpeech_01'
-input_dir = '/data/Kspon_dataset/original'
+input_dir = '/data/Kspon_dataset/wav'
 dataset = fileOI.get_divided_script(input_dir=input_dir)
 print(len(dataset))
 # dataset_merge = script_preprocess.merge_script_like_libris(dataset)
 # fileOI.write_csv_file(dataset_merge, './dataset', 'filelist.csv')
 # fileOI.read_csv_file('./dataset', 'filelist.csv')
-label_list = create_label.extract_singular_labels(dataset)
-fileOI.write_label('.', 'labels.txt', label_list)
-print(label_list)
+# label_list = create_label.extract_singular_labels(dataset)
+# fileOI.write_label('.', 'labels.txt', label_list)
+# print(label_list)
+json_list = script_preprocess.merge_script_like_clova_call(dataset, encoding='utf8')
+fileOI.write_json_file(json_list, './output_jso_20201020_1.json')
+output_filepath = './output_jso_20201020_1.json'
+train_list, test_list = script_preprocess.split_train_test_dataset_with_json(json_list, split_rate=0.2, encoding='utf8')
+fileOI.write_json_file(train_list, './output_train.json')
+fileOI.write_json_file(test_list, './output_test.json')

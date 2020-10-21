@@ -17,7 +17,8 @@ def extract_singular_labels(filelist, divider=' ', encoding='cp949'):
         for word in temp[1]:
             if word not in phn_list:
                 phn_list.append(word)
-            if word in ['Q','A','Z','W','S','X','E','D','C','R','F','V','T','G','B','Y','H','N','U','J','M','I','K','O','L','P']:
+            if word in ['Q', 'A', 'Z', 'W', 'S', 'X', 'E', 'D', 'C', 'R', 'F', 'V', 'T', 'G', 'B', 'Y', 'H', 'N', 'U',
+                        'J', 'M', 'I', 'K', 'O', 'L', 'P']:
                 print(temp[0], temp[1], original)
     return phn_list
 

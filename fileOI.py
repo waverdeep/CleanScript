@@ -34,7 +34,7 @@ def get_pure_filename(filename):
 
 def read_txt_file(file_path, encoding='utf8'):
     lines = []
-    f = open(file_path, 'r', encoding=encoding)
+    f = open(file_path, 'r', encoding=encoding, errors='ignore')
     while True:
         line = f.readline()
         if not line:
@@ -66,7 +66,7 @@ def filename_script_pair_tolist(filename, encoding):
     return temp
 
 
-def write_csv_file(dataset, filepath, filename, divider=' ', encoding='utf-8'):
+def write_csv_file(dataset, filepath, filename, divider=' ', encoding='utf8'):
     file = open('{}/{}'.format(filepath, filename), 'w', encoding=encoding)
     wr = csv.writer(file, delimiter=divider)
     for data in dataset:
@@ -83,12 +83,20 @@ def read_csv_file(filepath, filename, encoding='utf-8', divider=' '):
 
 
 def write_label(filepath, filename, label_list):
-    f = open("{}/{}".format(filepath, filename), 'w', encoding='utf-8')
+    f = open("{}/{}".format(filepath, filename), 'w', encoding='utf8')
     for label in label_list:
         f.write('{}\n'.format(label))
     f.close()
 
 
-def write_json_file(dataset, filepath, encoding='utf-8'):
-    with open(filepath, 'w', encoding=encoding) as outfile:
-        json.dump(dataset, outfile)
+def write_json_file(dataset, filepath, encoding='utf8'):
+    with open(filepath, 'w', encoding=encoding) as file:
+        file.write(json.dumps(dataset, ensure_ascii=False))
+    # with open(filepath, 'w', encoding=encoding) as outfile:
+    #     json.dump(dataset, outfile)
+
+
+def read_json_file(filepath, encoding='utf8'):
+    with open(filepath) as json_file:
+        json_data = json.load(json_file)
+    return json_data
