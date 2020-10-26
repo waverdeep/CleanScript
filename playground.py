@@ -23,6 +23,9 @@ import create_label
 # # remove numeric type
 # reformat_script_lines = script_manipulate.change_number_to_pron_in_list(reformat_script_lines)
 
+
+
+
 input_dir = './dataset/Kspon_dataset/KsponSpeech_01'
 input_dir = '/data/Kspon_dataset/wav'
 dataset = fileOI.get_divided_script(input_dir=input_dir)
@@ -37,5 +40,9 @@ json_list = script_preprocess.merge_script_like_clova_call(dataset, encoding='ut
 fileOI.write_json_file(json_list, './output_jso_20201020_1.json')
 output_filepath = './output_jso_20201020_1.json'
 train_list, test_list = script_preprocess.split_train_test_dataset_with_json(json_list, split_rate=0.2, encoding='utf8')
-fileOI.write_json_file(train_list, './output_train.json')
-fileOI.write_json_file(test_list, './output_test.json')
+# fileOI.write_json_file(train_list, './output_train.json')
+# fileOI.write_json_file(test_list, './output_test.json')
+
+
+
+script_preprocess.create_small_json(train_list)

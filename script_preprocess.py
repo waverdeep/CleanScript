@@ -43,7 +43,7 @@ def merge_script_like_clova_call(file_list, encoding='utf8'):
             filename = temp[0]
             text = temp[1]
             speaker_id = 0
-            dic_temp = {'wav': filename, 'text': text, 'speaker_id': speaker_id}
+            dic_temp = {'wav': '{}.wav'.format(filename), 'text': text, 'speaker_id': speaker_id}
             dataset.append(dic_temp)
     return dataset
 
@@ -57,5 +57,9 @@ def split_train_test_dataset_with_json(dataset, split_rate=0.2, encoding='utf8')
     trainset = json_data[test_length:]
     return trainset, testset
 
+
+def create_small_json(dataset, count=100):
+    json_data = dataset[:count]
+    fileOI.write_json_file(json_data, './output_test_small.json')
 
 
